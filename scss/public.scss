@@ -66,6 +66,10 @@ header {
   background-color: rgba(57, 23, 22, 1.00);
   padding: 5px 30px;
   @include clearfix();
+
+  @include range-width(0, 450px) {
+    padding: 5px 10px;
+  }
   
   .hlBoxs {
     display: inline-block;
@@ -134,6 +138,11 @@ header {
     color: $DeepBrown;
     font-weight: 600;
     padding: 15px 30px;
+
+    @include range-width(0, 450px) {
+      padding: 10px;
+      font-size: 1.5rem;
+    }
   }
 
 
@@ -349,16 +358,25 @@ header {
   background-color: $gray;
   padding: 25px 30px 0 30px;
 
+  @include range-width(0, 450px) {
+    padding: 10px;
+  }
+
   .centbox {
     display: inline-block;
     width: 100%;
     margin-bottom: 30px;
+
+    @include range-width(0, 450px) {
+      margin-bottom: 15px;
+    }
 
     .cTitle_box {
       display: inline-block;
       width: 100%;
       border-bottom: 1px solid rgba(197, 197, 197, 1.00);
       padding: 5px 0;
+      @include clearfix();
 
       a {
         display: inline-block;
@@ -403,6 +421,7 @@ header {
         font-size: 1.4rem;
         font-weight: 600;
         position: relative;
+        float: left;
 
         &.pblue {
           &:after {
@@ -454,7 +473,6 @@ header {
       }
 
       // 熱門主題
-
       .theme {
         $max-n: 10; //  項目最多幾個
 
@@ -793,6 +811,8 @@ header {
         }
       }
 
+
+
       // 龍騰講座 
       .dList_box {
         display: inline-block;
@@ -818,6 +838,10 @@ header {
             display: inline-block;
             width: 100%
           }
+
+          @include range-width(0, 450px) {
+            max-width: 100%;
+          }
         }
 
         .dR_boxs {
@@ -826,6 +850,13 @@ header {
           float: left;
           margin-left: 20px;
           @include clearfix();
+          text-align: left;
+
+          @include range-width(0, 450px) {
+            width: 100%;
+            margin-left: 0;
+            padding-top: 15px;
+          }
           
           .dR_title {
             display: inline-block;
@@ -837,6 +868,10 @@ header {
             line-height: 1.4rem;
             font-weight: 600;
             margin-bottom: 30px;
+
+            @include range-width(0, 450px) {
+              margin-bottom: 15px;
+            }
 
             &:hover, &:active {
               color: $DeepBrown;
@@ -850,6 +885,10 @@ header {
             font-size: 1rem;
             color: $DeepGray;
             float: left;
+
+            @include range-width(0, 450px) {
+              width: 100%;
+            }
 
             &:before {
               display: inline-block;
@@ -933,9 +972,22 @@ header {
           }
         }
 
-
         &:hover, &:active {
           color: rgba(139, 26, 27, 1.00);
+        }
+
+        @include range-width(0, 450px) {
+          &.c_al {
+            &:first-child {
+              display: none;
+            }
+          }
+
+          &.c_ar {
+            &:last-child {
+              display: none;
+            }
+          }
         }
       }
     }
@@ -961,6 +1013,10 @@ footer {
   .fTop_boxs {
     padding: 25px 30px;
 
+    @include range-width(0, 450px) {
+      padding: 10px;
+    }
+
     .fLogo_boxs {
       display: inline-block;
       width: 100%;
@@ -968,6 +1024,10 @@ footer {
       padding-bottom: 25px;
       @include clearfix();
       position: relative;
+
+      @include range-width(0, 450px) {
+        padding-bottom: 15px;
+      }
       
       .fLogo_box {
         display: inline-block;
@@ -982,6 +1042,14 @@ footer {
         position: absolute;
         bottom: 25px;
         right: 0;
+
+        @include range-width(0, 450px) {
+          display: inline-block;
+          width: 100%;
+          position: static;
+          padding-top: 15px;
+          text-align: left;
+        }
 
         a {
           display: inline-block;
@@ -1018,6 +1086,10 @@ footer {
     .fAdd_boxs {
       padding-top: 25px;
       @include clearfix();
+
+      @include range-width(0, 450px) {
+        padding-top: 0;
+      }
       
       > div {
         display: inline-block;
@@ -1025,11 +1097,19 @@ footer {
         float: left;
         text-align: left;
 
+        @include range-width(0, 450px) {
+          width: 100%;
+        }
+
         p {
           color: white;
           font-size: 1.1rem;
           font-weight: 600;
           position: relative;
+
+          @include range-width(0, 450px) {
+            padding-top: 15px;
+          }
 
           &:after {
             display: block;
@@ -1061,6 +1141,11 @@ footer {
     color: white;
     font-size: 1rem;
     padding: 10px 0;
+
+    @include range-width(0, 450px) {
+      padding: 10px;
+      text-align: center;
+    }
   }
 }
 
