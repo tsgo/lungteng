@@ -41,6 +41,22 @@ $LightGreen: rgba(114, 171, 16, 1.00);
 $LightBlue: rgba(31, 178, 218, 1.00);
 $DeepRed: rgba(130, 23, 22, 1.00);
 $GrayBlack: rgba(39, 40, 34, 1.00);
+$gray: rgba(230, 230, 230, 1.00);
+$DeepGray: rgba(39, 40, 34, 1.00);
+
+
+p {
+  display: inline-block;
+  padding: 0;
+  margin: 0;
+}
+
+span {
+  display: inline-block;
+}
+
+
+
 
 
 header {
@@ -59,7 +75,7 @@ header {
     img {
       display: inline-block;
       width: 100%;
-      max-width: 100%;
+      max-width: 37px;
     }
   }
 
@@ -79,12 +95,23 @@ header {
         margin: 0 10px;
       }
 
+      &:last-child, &:nth-last-child(2), &:nth-last-child(3) {
+        &:after {
+          content: '';
+        }
+      }
+
       a {
         display: inline-block;
         cursor: pointer;
         text-decoration: none;
         color: white;
         font-size: 1rem;
+        @include transition(color .3s);
+
+        &:hover, &:active {
+          color: $LightGreen;
+        }
       }
     }
   }
@@ -92,11 +119,475 @@ header {
 
 
 
-.centboxs {}
+
+
+.banner_boxs {
+  display: inline-block;
+  width: 100%;
+  max-width: $maxwidth;
+  text-align: left;
+
+  .title_boxs {
+    display: inline-block;
+    width: 100%;
+    font-size: 2.1rem;
+    color: $DeepBrown;
+    font-weight: 600;
+    padding: 15px 30px;
+  }
+
+
+  .banner {
+    $max-n: 10; //  項目最多幾個
+
+    position: relative;
+    display: inline-block;
+    width: 100%;
+    height: 525px;
+    
+    .items {
+      position: relative;
+      z-index: 1;
+
+      display: inline-block;
+      width: 100%;
+      height: 100%;
+
+      overflow: hidden;
+      
+      .item {
+        position: absolute;
+        left: 0;
+        top: 0;
+        display: inline-block;
+        height: 100%;
+        background-color: white;
+
+        @include transition(left .3s);
+      }
+    }
+
+    a {
+      position: absolute;
+      top: calc(50% - 32px / 2);
+      z-index: 2;
+      
+      display: inline-block;
+      width: 32px;
+      height: 32px;
+      line-height: 32px;
+      cursor: pointer;
+      text-align: center;
+      @include border-radius(50%);
+      
+      background-color: rgba(39, 40, 34, .300);
+      @include transition(background-color .3s);
+      
+      &.left {
+        left: 0;
+      }
+      &.right {
+        right: 0;
+      }
+      &:hover {
+        background-color: rgba(39, 40, 34, .500);
+      }
+      &:active {
+        background-color: rgba(39, 40, 34, .700);
+      }
+    }
+
+    .pages {
+      $w: 12px; // 點的寬高
+
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      z-index: 2;
+      padding: 20px 0;
+      
+      display: inline-block;
+      width: 100%;
+      height: $w;
+
+      text-align: center;
+
+      > div {
+        display: inline-block;
+        margin: 0 auto;
+        @include clearfix();
+        
+        > i {
+          display: inline-block;
+          width: $w;
+          height: $w;
+          margin: 0 3px;
+          cursor: pointer;
+
+          @include border-radius(50%);
+          background-color: rgba(255, 255, 255, .7);
+
+          @include transition(background-color .3s);
+
+
+          &:hover { // 滑過
+            background-color: $LightGreen;
+          }
+        }
+      }
+    }
+
+    $max-unit: 10; //  data-unit 最大值
+    @for $i from 1 through $max-unit {
+      @include range-width(0, 450px) {
+        width: 100%;
+        &[data-unit='#{$i}'] {
+          .items {
+            .item {
+              width: 100%;
+
+              @for $j from 1 through $max-n {
+                &:nth-child(#{$j}) {
+                  left: calc(#{($j - 1)} * 100%);
+                }
+              }
+            }
+          }
+          
+          $p: $max-n;
+
+          @for $j from 1 through $p {
+            &[data-page='#{$j}'] {
+              .items {
+                .item {
+                  @for $k from 1 through $max-n {
+                    &:nth-child(#{$k}) {
+                      left: calc(#{($k - $j)} * 100%);
+                    }
+                  }
+                }
+              }
+
+              .pages {
+                > div {
+                  > i {
+                    @for $k from 1 through $p {
+                      &:nth-child(#{$k}) {
+                        @if $k == $j {
+                          // 當頁下的點顏色
+                          background-color: $LightGreen;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      };
+
+      @include range-width(450px) {
+        &[data-unit='#{$i}'] {
+          .items {
+            .item {
+              width: calc(100% / #{$i});
+
+              @for $j from 1 through $max-n {
+                &:nth-child(#{$j}) {
+                  left: calc(#{($j - 1)} * (100% / #{$i}));
+                }
+              }
+            }
+          }
+          
+          $p: ceil($max-n / $i);
+
+          @for $j from 1 through $p {
+            &[data-page='#{$j}'] {
+              .items {
+                .item {
+                  @for $k from 1 through $max-n {
+                    &:nth-child(#{$k}) {
+                      left: calc(#{($k - ($j - 1) * $i - 1)} * (100% / #{$i}));
+                    }
+                  }
+                }
+              }
+
+              .pages {
+                > div {
+                  > i {
+                    @for $k from 1 through $p {
+                      &:nth-child(#{$k}) {
+                        @if $k == $j {
+                          // 當頁下的點顏色
+                          background-color:  $LightGreen;
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
 
 
 
-footer {}
+
+
+.centboxs {
+  display: inline-block;
+  width: 100%;
+  max-width: $maxwidth;
+  background-color: $gray;
+  padding: 25px 30px;
+
+  .centbox {
+    display: inline-block;
+    width: 100%;
+    margin-bottom: 30px;
+
+    .cTitle_box {
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid rgba(197, 197, 197, 1.00);
+      padding: 5px 0;
+
+      a {
+        display: inline-block;
+        cursor: pointer;
+        text-decoration: none;
+        font-weight: 600;
+        float: right;
+        font-size: 1rem;
+        color: $LightGreen;
+
+        &:hover, &:active {
+          text-decoration: underline;
+        }
+      }
+
+      p {
+        color: $DeepGray;
+        font-size: 1.4rem;
+        font-weight: 600;
+        position: relative;
+
+        &.pblue {
+          &:after {
+            display: inline-block;
+            content: '';
+            background-color: $LightBlue;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+          }
+        }
+
+        &.pgreen {
+          &:after {
+            display: inline-block;
+            content: '';
+            background-color: $LightGreen;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+          }
+        }
+
+        &.pbrown {
+          &:after {
+            display: inline-block;
+            content: '';
+            background-color: $DeepBrown;
+            width: 100%;
+            height: 4px;
+            position: absolute;
+            left: 0;
+            bottom: -7px;
+          }
+        }
+      }
+    }
+
+    .detail_boxs {
+      display: inline-block;
+      width: 100%;
+
+      // 龍騰講座 
+      .dList_box {
+        display: inline-block;
+        width: 100%;
+        border-bottom: 1px solid rgba(197, 197, 197, 1.00);
+        padding: 15px 0;
+        @include clearfix();
+        
+        .dL_boxs {
+          display: inline-block;
+          width: 100%;
+          max-width: 300px;
+          height: 175px;
+          float: left;
+          @include border-radius(5px);
+          overflow: hidden;
+          
+          img {
+            display: inline-block;
+            width: 100%
+          }
+        }
+
+        .dR_boxs {
+          display: inline-block;
+          width: calc(100% - 300px);
+
+          .dR_title {
+            display: inline-block;
+            width: 100%;
+            cursor: pointer;
+            text-decoration: none;
+            font-size: 1.1rem;
+            color: $gray;
+            line-height: 1.1rem;
+          }
+        }
+      }
+    }
+  }
+
+}
+
+
+
+
+
+footer {
+  display: inline-block;
+  width: 100%;
+  max-width: $maxwidth;
+  background-color: $GrayBlack;
+
+  .fTop_boxs, .fDown_boxs {
+    display: inline-block;
+    width: 100%;
+  }
+
+  .fTop_boxs {
+    padding: 25px 30px;
+
+    .fLogo_boxs {
+      display: inline-block;
+      width: 100%;
+      border-bottom: 1px solid rgba(122, 122, 122, 1.00);
+      padding-bottom: 25px;
+      @include clearfix();
+      position: relative;
+      
+      .fLogo_box {
+        display: inline-block;
+        width: 100%;
+        max-width: 150px;
+        float: left;
+      }
+
+      .fLink_box {
+        font-size: 1rem;
+        color: white;
+        position: absolute;
+        bottom: 25px;
+        right: 0;
+
+        a {
+          display: inline-block;
+          font-size: 1rem;
+          color: white;
+          cursor: pointer;
+          text-decoration: none;
+          @include transition(color .3s);
+
+          &:hover, &:active {
+            color: $LightGreen;
+
+            &:after {
+              color: white;
+            }
+          }
+
+          &:after {
+            display: inline-block;
+            content: '|';
+            font-size: 1.1rem;
+            margin: 0 10px;
+          }
+
+          &:last-child {
+            &:after {
+              display: none;
+            }
+          }
+        }
+      }
+    }
+
+    .fAdd_boxs {
+      padding-top: 25px;
+      @include clearfix();
+      
+      > div {
+        display: inline-block;
+        width: calc(100% / 3);
+        float: left;
+        text-align: left;
+
+        p {
+          color: white;
+          font-size: 1.1rem;
+          font-weight: 600;
+          position: relative;
+
+          &:after {
+            display: block;
+            content: '';
+            width: 35px;
+            height: 3px;
+            background-color: rgba(122, 122, 122, 1.00);
+            position: absolute;
+            bottom: -10px;
+            left: 0;
+          }
+        }
+
+        span {
+          color: white;
+          font-size: .8rem;
+          margin-top: 15px;
+
+          ~ span {
+            margin-top: 0;
+          }
+        }
+      }
+    }
+  }
+
+  .fDown_boxs {
+    background-color: $DeepBrown;
+    color: white;
+    font-size: 1rem;
+    padding: 10px 0;
+  }
+}
 
 
 
