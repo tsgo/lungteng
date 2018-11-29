@@ -41,7 +41,7 @@ $LightGreen: rgba(114, 171, 16, 1.00);
 $LightBlue: rgba(31, 178, 218, 1.00);
 $DeepRed: rgba(130, 23, 22, 1.00);
 $GrayBlack: rgba(39, 40, 34, 1.00);
-$gray: rgba(230, 230, 230, 1.00);
+$gray: rgba(230, 230, 230, .5);
 $DeepGray: rgba(39, 40, 34, 1.00);
 
 
@@ -347,7 +347,7 @@ header {
   width: 100%;
   max-width: $maxwidth;
   background-color: $gray;
-  padding: 25px 30px;
+  padding: 25px 30px 0 30px;
 
   .centbox {
     display: inline-block;
@@ -373,6 +373,30 @@ header {
           text-decoration: underline;
         }
       }
+
+      .month {
+        display: inline-block;
+        float: right;
+
+        &:before {
+          display: inline-block;
+          content: attr(title);
+          font-size: .9rem;
+          color: $DeepGray;
+        }
+
+        select {
+          display: inline-block;
+          appearance: none;
+          color: rgba(140, 28, 29, 1.00);
+          font-size: .9rem;
+          font-weight: 600;
+          border: 0;
+          background-color: transparent;
+          outline: 0;
+        }
+      }
+      
 
       p {
         color: $DeepGray;
@@ -425,6 +449,350 @@ header {
       display: inline-block;
       width: 100%;
 
+      &.mild {
+        text-align: center;
+      }
+
+      // 熱門主題
+
+      .theme {
+        $max-n: 10; //  項目最多幾個
+
+        position: relative;
+        display: inline-block;
+        width: 100%;
+        height: 425px;
+        margin-top: 20px;
+        
+        .th_items {
+          position: relative;
+          z-index: 1;
+
+          display: inline-block;
+          width: 100%;
+          height: 100%;
+
+          overflow: hidden;
+          
+          .th_item {
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: inline-block;
+            height: 100%;
+            @include transition(left .3s);
+            padding: 0 10px; 
+            @include clearfix();
+            
+            .th_title {
+              display: inline-block;
+              width: 100%;
+              font-size: 1.1rem;
+              color: $LightGreen;
+              padding-bottom: 10px;
+            }
+
+            .th_pic {
+              display: inline-block;
+              width: 100%;
+              overflow: hidden;
+              @include border-radius(5px);
+
+              img {
+                display: inline-block;
+                width: 100%;
+                max-width: 293px;
+              }
+            }
+
+            .th_type {
+              display: inline-block;
+              width: 100%;
+              border-bottom: 1px solid rgba(215, 215, 215, 1.00);
+              padding: 15px 0;
+              text-align: left;
+
+              p {
+                display: inline-block;
+                width: 100%;
+                color: $GrayBlack;
+                font-size: .9rem;
+                padding-bottom: 10px; 
+              }
+
+              .th_text {
+                position: static !important;
+                display: inline-block;
+                width: 100%;
+                height: auto;
+                color: $GrayBlack;
+                cursor: pointer;
+                text-decoration: none;
+                font-size: 1.1rem;
+                text-align: left;
+                line-height: 1.5rem;
+                background-color: transparent;
+                @include transition(color .3s);
+
+                &:hover, &:active {
+                  color: $LightGreen;
+                }
+              }
+            }
+
+            .th_link {
+              position: static !important;
+              width: auto;
+              display: inline-block;
+              height: auto;
+              color: $LightGreen;
+              cursor: pointer;
+              text-decoration: none;
+              font-size: .9rem;
+              background-color: transparent;
+              float: right;
+              @include transition(text-decoration .3s);
+
+              &:hover, &:active {
+                text-decoration: underline;
+              }
+            }
+          }
+        }
+
+        a {
+          position: absolute;
+          top: calc(50% - 32px / 2);
+          z-index: 2;
+          
+          display: inline-block;
+          width: 32px;
+          height: 32px;
+          line-height: 32px;
+          cursor: pointer;
+          text-align: center;
+          @include border-radius(50%);
+          
+          background-color: rgba(255, 255, 255, .5);
+          @include transition(background-color .3s);
+          
+          &.th_left {
+            left: -15px;
+
+            &:before {
+              display: inline-block;
+              content: '\e907';
+              font-family: 'icomoon';
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: $LightGreen;
+            }
+          }
+
+          &.th_right {
+            right: -15px;
+
+            &:before {
+              display: inline-block;
+              content: '\e908';
+              font-family: 'icomoon';
+              font-size: 1.2rem;
+              font-weight: 600;
+              color: $LightGreen;
+            }
+          }
+          &:hover {
+            background-color: rgba(255, 255, 255, 1);
+          }
+          &:active {
+            background-color: rgba(255, 255, 255, .8);
+          }
+        }
+        .th_pages {
+          $w: 12px; // 點的寬高
+
+          position: absolute;
+          bottom: 0;
+          left: 0;
+          z-index: 2;
+          
+          display: inline-block;
+          width: 100%;
+          height: $w;
+          border: 1px solid rgba(255, 0, 0, .3);
+
+          text-align: center;
+
+          > div {
+            display: inline-block;
+            margin: 0 auto;
+            @include clearfix();
+            
+            > i {
+              display: inline-block;
+              width: $w;
+              height: $w;
+              border: 1px solid rgba(255, 0, 0, .3);
+              margin: 0 3px;
+              cursor: pointer;
+
+              @include border-radius(50%);
+              background-color: rgba(39, 40, 34, .300);
+
+              @include transition(background-color .3s);
+
+
+              &:hover { // 滑過
+                background-color: rgba(39, 40, 34, .500);
+              }
+            }
+          }
+        }
+
+        $max-unit: 10; //  data-unit 最大值
+        @for $i from 1 through $max-unit {
+          @include range-width(0, 450px) {
+            width: 100%;
+            &[data-unit='#{$i}'] {
+              .th_items {
+                .th_item {
+                  width: 100%;
+
+                  @for $j from 1 through $max-n {
+                    &:nth-child(#{$j}) {
+                      left: calc(#{($j - 1)} * 100%);
+                    }
+                  }
+                }
+              }
+              
+              $p: $max-n;
+
+              @for $j from 1 through $p {
+                &[data-page='#{$j}'] {
+                  .th_items {
+                    .th_item {
+                      @for $k from 1 through $max-n {
+                        &:nth-child(#{$k}) {
+                          left: calc(#{($k - $j)} * 100%);
+                        }
+                      }
+                    }
+                  }
+
+                  .th_pages {
+                    > div {
+                      > i {
+                        @for $k from 1 through $p {
+                          &:nth-child(#{$k}) {
+                            @if $k == $j {
+                              // 當頁下的點顏色
+                              background-color: rgba(39, 40, 34, .700);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          };
+
+          @include range-width(450px) {
+            &[data-unit='#{$i}'] {
+              .th_items {
+                .th_item {
+                  width: calc(100% / #{$i});
+
+                  @for $j from 1 through $max-n {
+                    &:nth-child(#{$j}) {
+                      left: calc(#{($j - 1)} * (100% / #{$i}));
+                    }
+                  }
+                }
+              }
+              
+              $p: ceil($max-n / $i);
+
+              @for $j from 1 through $p {
+                &[data-page='#{$j}'] {
+                  .th_items {
+                    .th_item {
+                      @for $k from 1 through $max-n {
+                        &:nth-child(#{$k}) {
+                          left: calc(#{($k - ($j - 1) * $i - 1)} * (100% / #{$i}));
+                        }
+                      }
+                    }
+                  }
+
+                  .th_pages {
+                    > div {
+                      > i {
+                        @for $k from 1 through $p {
+                          &:nth-child(#{$k}) {
+                            @if $k == $j {
+                              // 當頁下的點顏色
+                              background-color: rgba(39, 40, 34, .700);
+                            }
+                          }
+                        }
+                      }
+                    }
+                  }
+                }
+              }
+            }
+          };
+        }
+      }
+
+
+
+      // 數位學習
+      .icon_boxs {
+        display: inline-block;
+        width: 200px;
+        padding-top: 20px;
+        margin: 0 20px;
+
+        .icon_box {
+          display: inline-block;
+          width: 200px;
+          height: 200px;
+          @include border-radius(50%);
+          background-color: white;
+          overflow: hidden;
+          position: relative;
+
+          img {
+            display: block;
+            width: 100%;
+            max-width: 114px;
+            position: absolute;
+            top: 40px;
+            left: 40px;
+          }
+        }
+
+        a {
+          display: inline-block;
+          cursor: pointer;
+          text-decoration: none;
+          width: 100%;
+          font-size: 1.2rem;
+          color: $DeepGray;
+          font-weight: 600;
+          padding: 10px 0;
+          @include transition(all .3s);
+          
+          &:hover, &:active {
+            color: $LightBlue;
+          }
+        }
+      }
+
       // 龍騰講座 
       .dList_box {
         display: inline-block;
@@ -432,6 +800,10 @@ header {
         border-bottom: 1px solid rgba(197, 197, 197, 1.00);
         padding: 15px 0;
         @include clearfix();
+
+        &:last-child {
+          border-bottom: 0;
+        }
         
         .dL_boxs {
           display: inline-block;
@@ -450,17 +822,120 @@ header {
 
         .dR_boxs {
           display: inline-block;
-          width: calc(100% - 300px);
-
+          width: calc(100% - 300px - 20px);
+          float: left;
+          margin-left: 20px;
+          @include clearfix();
+          
           .dR_title {
             display: inline-block;
             width: 100%;
             cursor: pointer;
             text-decoration: none;
             font-size: 1.1rem;
-            color: $gray;
-            line-height: 1.1rem;
+            color: $DeepGray;
+            line-height: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 30px;
+
+            &:hover, &:active {
+              color: $DeepBrown;
+              text-decoration: underline;
+            }
           }
+
+          .dR_cent {
+            display: inline-block;
+            width: 50%;
+            font-size: 1rem;
+            color: $DeepGray;
+            float: left;
+
+            &:before {
+              display: inline-block;
+              content: attr(title);
+              font-weight: 600;
+              margin-right: 5px;
+              white-space: pre;
+            }
+
+            a {
+              display: inline-block;
+              text-decoration: none;
+              font-size: 1rem;
+              color: $DeepGray;
+              cursor: pointer;
+              margin-top: 3px;
+              @include transition(all .3s);
+              
+              &:hover, &:active {
+                color: $LightGreen;
+              }
+            }
+
+            i {
+              display: inline-block;
+              width: 100%;
+              font-style: normal;
+              font-style: 1rem;
+              color: rgba(39, 40, 34, .5);
+            }
+          }
+        }
+      }
+    }
+
+    // 龍騰講座：頁數
+    .page_boxs {
+      display: inline-block;
+      width: 100%;
+      text-align: center;
+      padding-top: 20px;
+
+      .c_number, .c_arrow {
+        display: inline-block;
+        line-height: 30px;
+        margin: 0 5px;
+        color: $DeepGray;
+        font-size: 1.1rem;
+        @include transition(all .3s);
+        text-decoration: none;
+        cursor: pointer;
+      }
+
+      .c_number {
+        font-weight: 600;
+        width: 30px;
+        height: 30px;
+
+        &:hover, &:active, &.num_ac {
+          background-color: rgba(139, 26, 27, 1.00);
+          color: white;
+          @include border-radius(50%);
+        }
+      }
+
+      .c_arrow {
+
+        &.c_al {
+          &:before {
+            display: inline-block;
+            content: '\e907';
+            font-family: 'icomoon'
+          }
+        }
+
+        &.c_ar {
+          &:after {
+            display: inline-block;
+            content: '\e908';
+            font-family: 'icomoon'
+          }
+        }
+
+
+        &:hover, &:active {
+          color: rgba(139, 26, 27, 1.00);
         }
       }
     }
