@@ -2,7 +2,7 @@
  
 $(function () {
 
-  $(".logos, .dL_boxs").imgLiquid ();
+  $(".logos, .dL_boxs, .th_pic, .item").imgLiquid ();
 
 
   $('.banner').each(function() {

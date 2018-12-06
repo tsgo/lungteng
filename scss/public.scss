@@ -91,40 +91,133 @@ header {
       display: none;
     }
 
-    > div {
-      display: inline-block;
-      line-height: 45px;
-      @include clearfix();
-      
-      &:before {
-        display: inline-block;
-        content: '|';
-        color: white;
-        font-size: 1.2rem;
-        margin: 0 10px;
-        float: left;
+    > span {
+        width: 80px;
+        line-height: 45px;
+        position: relative;
+
+        div { display: none; }
+
+        &:hover {
+          > div {
+            display: block;
+            width: 80px;
+            margin-left: -30px;
+            z-index: 888;
+            position: absolute;
+            background-color: $LightGreen;
+
+            > a {
+              display: block;
+              width: 100%;
+              height: 45px;
+              line-height: 45px;
+              font-size: 1rem;
+              float: none;
+              text-align: left;
+              color: white;
+              text-decoration: none;
+
+              &:hover {
+                
+              }
+
+              @include transition(background-color .3s);        
+            }
+          }
+        }
       }
 
-      &:first-child, &:nth-last-child(1), &:nth-last-child(2) {
+      > span, > a {
+        display: inline-block;
+        cursor: pointer;
+        float: right;
+        width: 80px;
+        height: 45px;
+        line-height: 45px;
+        @include transition(all .3s);
+        @include clearfix();
+        
+        color: white;
+        font-size: 1rem;
+        text-decoration: none;
+
+        &:hover, &:active {
+          color: $LightGreen;
+        }
+
         &:before {
-          content: '';
+          display: inline-block;
+          content: '|';
+          color: white;
+          font-size: 1.2rem;
+          // margin: 0 10px;
+          float: left;
+        }
+
+        &:last-child {
+          &:before {
+            display: none;
+          }
         }
       }
 
       a {
         display: inline-block;
-        cursor: pointer;
-        text-decoration: none;
         color: white;
         font-size: 1rem;
-        @include transition(color .3s);
-        float: right;
+        text-decoration: none;
+        cursor: pointer;
 
-        &:hover, &:active {
-          color: $LightGreen;
+        &.icon-line, &.icon-facebook {
+          width: 30px;
+          height: 30px;
+          color: white;
+          font-size: 1rem;
+          text-decoration: none;
+        }
+
+        &:first-child, &:nth-child(2) {
+          &:before {
+            display: none;
+          }
         }
       }
-    }
+
+    // > div {
+    //   display: inline-block;
+    //   line-height: 45px;
+    //   @include clearfix();
+      
+    //   &:before {
+    //     display: inline-block;
+    //     content: '|';
+    //     color: white;
+    //     font-size: 1.2rem;
+    //     margin: 0 10px;
+    //     float: left;
+    //   }
+
+    //   &:first-child, &:nth-last-child(1), &:nth-last-child(2) {
+    //     &:before {
+    //       content: '';
+    //     }
+    //   }
+
+    //   a {
+    //     display: inline-block;
+    //     cursor: pointer;
+    //     text-decoration: none;
+    //     color: white;
+    //     font-size: 1rem;
+    //     @include transition(color .3s);
+    //     float: right;
+
+    //     &:hover, &:active {
+    //       color: $LightGreen;
+    //     }
+    //   }
+    // }
   }
 
   .menu_boxs {
@@ -352,6 +445,10 @@ header {
     display: inline-block;
     width: 100%;
     height: 525px;
+
+    @include range-width(0, 450px) {
+      height: 300px;
+    }
     
     .items {
       position: relative;
@@ -372,6 +469,10 @@ header {
         background-color: white;
 
         @include transition(left .3s);
+
+        @include range-width(0, 450px) {
+          height: 300px;
+        }
       }
     }
 
@@ -808,6 +909,7 @@ header {
             .th_pic {
               display: inline-block;
               width: 100%;
+              height: 235px;
               overflow: hidden;
               @include border-radius(5px);
 
@@ -875,7 +977,7 @@ header {
 
         a {
           position: absolute;
-          top: calc(50% - 32px / 2);
+          top: calc(50% - 155px / 2);
           z-index: 2;
 
           @include range-width(0, 450px) {
@@ -894,7 +996,7 @@ header {
           @include transition(background-color .3s);
           
           &.th_left {
-            left: -15px;
+            left: -5px;
 
             @include range-width(0, 450px) {
               left: -5px;
@@ -911,7 +1013,7 @@ header {
           }
 
           &.th_right {
-            right: -15px;
+            right: -5px;
 
             @include range-width(0, 450px) {
               right: -5px;
@@ -926,6 +1028,7 @@ header {
               color: $LightGreen;
             }
           }
+
           &:hover {
             background-color: rgba(255, 255, 255, 1);
           }
