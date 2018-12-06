@@ -99,27 +99,31 @@ header {
         div { display: none; }
 
         &:hover {
+
           > div {
             display: block;
-            width: 80px;
-            margin-left: -30px;
+            width: 100px;
+            // margin-left: -30px;
             z-index: 888;
             position: absolute;
-            background-color: $LightGreen;
+            background-color: transparent;
+            top: 45px;
 
             > a {
               display: block;
               width: 100%;
               height: 45px;
               line-height: 45px;
+              padding: 0 5px;
               font-size: 1rem;
               float: none;
               text-align: left;
               color: white;
               text-decoration: none;
+              background-color: $LightGreen;
 
               &:hover {
-                
+                color: #321616;
               }
 
               @include transition(background-color .3s);        
@@ -170,11 +174,13 @@ header {
         cursor: pointer;
 
         &.icon-line, &.icon-facebook {
+          display: inline-block;
           width: 30px;
           height: 30px;
           color: white;
           font-size: 1rem;
           text-decoration: none;
+          border: 1px solid rgba(255, 0, 0, .3);
         }
 
         &:first-child, &:nth-child(2) {
