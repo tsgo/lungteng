@@ -187,6 +187,7 @@ header {
       -webkit-transition: all 0.3s;
       transition: all 0.3s;
       *zoom: 1;
+      position: relative;
       color: white;
       font-size: 1rem;
       text-decoration: none; }
@@ -197,13 +198,16 @@ header {
         clear: both; }
       header .hrBoxs > span:hover, header .hrBoxs > span:active, header .hrBoxs > a:hover, header .hrBoxs > a:active {
         color: #72ab10; }
-      header .hrBoxs > span:before, header .hrBoxs > a:before {
+      header .hrBoxs > span:after, header .hrBoxs > a:after {
         display: inline-block;
         content: '|';
         color: white;
         font-size: 1.2rem;
-        float: left; }
-      header .hrBoxs > span:last-child:before, header .hrBoxs > a:last-child:before {
+        float: left;
+        position: absolute;
+        top: 20px;
+        left: -4px; }
+      header .hrBoxs > span:first-child:after, header .hrBoxs > a:first-child:after {
         display: none; }
     header .hrBoxs a {
       display: inline-block;
@@ -217,9 +221,10 @@ header {
         height: 30px;
         color: white;
         font-size: 1rem;
-        text-decoration: none;
-        border: 1px solid rgba(255, 0, 0, 0.3); }
-      header .hrBoxs a:first-child:before, header .hrBoxs a:nth-child(2):before {
+        text-decoration: none; }
+        header .hrBoxs a.icon-line:hover, header .hrBoxs a.icon-line:active, header .hrBoxs a.icon-facebook:hover, header .hrBoxs a.icon-facebook:active {
+          color: #72ab10; }
+      header .hrBoxs a:first-child:after, header .hrBoxs a:nth-child(2):after {
         display: none; }
   header .menu_boxs {
     display: none; }

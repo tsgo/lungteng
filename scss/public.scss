@@ -141,6 +141,7 @@ header {
         line-height: 45px;
         @include transition(all .3s);
         @include clearfix();
+        position: relative;
         
         color: white;
         font-size: 1rem;
@@ -150,17 +151,20 @@ header {
           color: $LightGreen;
         }
 
-        &:before {
+        &:after {
           display: inline-block;
           content: '|';
           color: white;
           font-size: 1.2rem;
           // margin: 0 10px;
           float: left;
+          position: absolute;
+          top:20px;
+          left: -4px;
         }
 
-        &:last-child {
-          &:before {
+        &:first-child {
+          &:after {
             display: none;
           }
         }
@@ -180,11 +184,14 @@ header {
           color: white;
           font-size: 1rem;
           text-decoration: none;
-          border: 1px solid rgba(255, 0, 0, .3);
+
+          &:hover, &:active {
+            color: $LightGreen;
+          }
         }
 
         &:first-child, &:nth-child(2) {
-          &:before {
+          &:after {
             display: none;
           }
         }
