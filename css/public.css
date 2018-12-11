@@ -120,7 +120,7 @@ header {
   width: 100%;
   max-width: 1004px;
   background-color: #391716;
-  padding: 5px 30px;
+  padding: 0 30px;
   *zoom: 1; }
   header:after {
     display: table;
@@ -156,7 +156,7 @@ header {
         z-index: 888;
         position: absolute;
         background-color: transparent;
-        top: 50px;
+        top: 45px;
         font-weight: 400; }
         header .hrBoxs > span:hover > div > a {
           display: block;
@@ -202,8 +202,7 @@ header {
         line-height: 0;
         clear: both; }
       header .hrBoxs > span:hover, header .hrBoxs > span:active, header .hrBoxs > a:hover, header .hrBoxs > a:active {
-        color: #72ab10;
-        font-weight: 600; }
+        color: #72ab10; }
       header .hrBoxs > span:after, header .hrBoxs > a:after {
         display: inline-block;
         content: '|';

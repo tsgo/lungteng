@@ -64,7 +64,7 @@ header {
   width: 100%;
   max-width: $maxwidth;
   background-color: rgba(57, 23, 22, 1.00);
-  padding: 5px 30px;
+  padding: 0 30px;
   // line-height: 55px;
   // height: 55px;
   @include clearfix();
@@ -109,7 +109,7 @@ header {
             z-index: 888;
             position: absolute;
             background-color: transparent;
-            top: 50px;
+            top: 45px;
             font-weight: 400;
 
             > a {
@@ -160,7 +160,7 @@ header {
 
         &:hover, &:active {
           color: $LightGreen;
-          font-weight: 600;
+          // font-weight: 600;
         }
 
         &:after {
