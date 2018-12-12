@@ -915,6 +915,7 @@ header {
         .th_items {
           position: relative;
           z-index: 1;
+          text-align: left;
 
           display: inline-block;
           width: 100%;
@@ -1264,11 +1265,24 @@ header {
         border-bottom: 1px solid rgba(197, 197, 197, 1.00);
         padding: 15px 0;
         @include clearfix();
+        position: relative;
 
         &:last-child {
           border-bottom: 0;
         }
         
+        .dList_date {
+          display: inline-block;
+          position: absolute;
+          background-color: rgba(50, 22, 22, .8);
+          color: white;
+          font-size: 1rem;
+          padding: 3px 10px;
+          float: right;
+          top: 25px;
+          left: 0;
+        }
+
         .dL_boxs {
           display: inline-block;
           width: 100%;
@@ -1300,6 +1314,31 @@ header {
             width: 100%;
             margin-left: 0;
             padding-top: 15px;
+          }
+
+          .hot_title {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 10px;
+            color: $LightGreen;
+            font-size: 1.1rem;
+            line-height: 1.4rem;
+            font-weight: 600;
+
+            &:hover, &:active {
+              color: $DeepBrown;
+              text-decoration: underline;
+            }
+          }
+
+          .hot_detail {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+            color: $DeepGray;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.6rem;
           }
           
           .dR_title {

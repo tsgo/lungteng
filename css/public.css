@@ -4082,6 +4082,7 @@ header {
         .centboxs .centbox .detail_boxs .theme .th_items {
           position: relative;
           z-index: 1;
+          text-align: left;
           display: inline-block;
           width: 100%;
           height: 100%;
@@ -7701,7 +7702,8 @@ header {
         width: 100%;
         border-bottom: 1px solid #c5c5c5;
         padding: 15px 0;
-        *zoom: 1; }
+        *zoom: 1;
+        position: relative; }
         .centboxs .centbox .detail_boxs .dList_box:after {
           display: table;
           content: "";
@@ -7709,6 +7711,16 @@ header {
           clear: both; }
         .centboxs .centbox .detail_boxs .dList_box:last-child {
           border-bottom: 0; }
+        .centboxs .centbox .detail_boxs .dList_box .dList_date {
+          display: inline-block;
+          position: absolute;
+          background-color: rgba(50, 22, 22, 0.8);
+          color: white;
+          font-size: 1rem;
+          padding: 3px 10px;
+          float: right;
+          top: 25px;
+          left: 0; }
         .centboxs .centbox .detail_boxs .dList_box .dL_boxs {
           display: inline-block;
           width: 100%;
@@ -7742,6 +7754,25 @@ header {
               width: 100%;
               margin-left: 0;
               padding-top: 15px; } }
+          .centboxs .centbox .detail_boxs .dList_box .dR_boxs .hot_title {
+            display: block;
+            text-decoration: none;
+            margin-bottom: 10px;
+            color: #72ab10;
+            font-size: 1.1rem;
+            line-height: 1.4rem;
+            font-weight: 600; }
+            .centboxs .centbox .detail_boxs .dList_box .dR_boxs .hot_title:hover, .centboxs .centbox .detail_boxs .dList_box .dR_boxs .hot_title:active {
+              color: #391716;
+              text-decoration: underline; }
+          .centboxs .centbox .detail_boxs .dList_box .dR_boxs .hot_detail {
+            display: inline-block;
+            width: 100%;
+            margin-bottom: 10px;
+            color: #272822;
+            font-size: .9rem;
+            font-weight: 400;
+            line-height: 1.6rem; }
           .centboxs .centbox .detail_boxs .dList_box .dR_boxs .dR_title {
             display: inline-block;
             width: 100%;
